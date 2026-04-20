@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
 import { logger, generateTraceId } from '@/lib/logger';
 
-const log = logger('api:error-handler');
-
 export interface ApiErrorResponse {
   error: string;
   code: string;

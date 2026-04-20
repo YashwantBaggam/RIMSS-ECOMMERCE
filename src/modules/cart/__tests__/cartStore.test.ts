@@ -1,10 +1,13 @@
 import type { Product } from '@/lib/mock-data';
 import { useCartStore } from '../store/cartStore';
 
+global.fetch = jest.fn().mockResolvedValue({ ok: true });
+
 // Reset store between tests
 beforeEach(() => {
   useCartStore.setState({ items: [], isOpen: false });
 });
+
 
 const mockProduct: Product = {
   id: 'test-1',
