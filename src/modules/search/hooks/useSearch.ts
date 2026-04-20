@@ -6,7 +6,7 @@ const PAGE_SIZE = 12;
 /**
  * Infinite-scroll search hook:
  * - NO debounce here — query arrives pre-debounced from SearchBar (500ms)
- *   Having a second debounce (300ms) was causing 800ms total delay and
+ *   Having a second debounce (600ms) was causing 800ms total delay and
  *   a double re-render cycle that dropped characters from the input.
  * - React Query infinite cache: repeat pages = 0ms
  * - keepPreviousData: no flash when query changes

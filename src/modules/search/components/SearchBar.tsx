@@ -13,7 +13,7 @@ interface Props {
 export function SearchBar({ defaultValue = '', placeholder = 'Search products...' }: Props) {
   const [query, setQuery] = useState(defaultValue);
   const [isPending, startTransition] = useTransition();
-  const debouncedQuery = useDebounce(query, 500);
+  const debouncedQuery = useDebounce(query, 1000);
   const router = useRouter();
   const routerRef = useRef(router);
   useEffect(() => { routerRef.current = router; }, [router]);
