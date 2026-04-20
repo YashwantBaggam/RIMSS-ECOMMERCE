@@ -47,7 +47,7 @@ const MAX_PANEL_ENTRIES = 80;
 
 interface PanelStore {
   entries: LogEntry[];
-  listeners: Array<(entries: LogEntry[]) => void>;
+  listeners: Array<(_entries: LogEntry[]) => void>;
 }
 
 const _panelStore: PanelStore = { entries: [], listeners: [] };
@@ -57,7 +57,7 @@ export const logPanel = {
     _panelStore.entries = [entry, ..._panelStore.entries].slice(0, MAX_PANEL_ENTRIES);
     _panelStore.listeners.forEach((fn) => fn(_panelStore.entries));
   },
-  subscribe(fn: (entries: LogEntry[]) => void): () => void {
+  subscribe(fn: (_entries: LogEntry[]) => void): () => void {
     _panelStore.listeners.push(fn);
     fn(_panelStore.entries);
     return () => { _panelStore.listeners = _panelStore.listeners.filter((l) => l !== fn); };
@@ -98,6 +98,7 @@ function emit(entry: LogEntry): void {
       } else if (entry.level === 'warn') {
         console.warn(prefix, style, entry.message, entry.data ?? '');
       } else {
+        // eslint-disable-next-line no-console
         console.info(prefix, style, entry.message, entry.data ?? '');
       }
     }

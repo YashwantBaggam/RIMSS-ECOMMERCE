@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useQueryClient, useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import { productService } from '../services/productService';
 import { CATEGORIES } from '@/lib/mock-data';
 

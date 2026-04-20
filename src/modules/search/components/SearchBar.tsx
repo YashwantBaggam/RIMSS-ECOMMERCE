@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useTransition } from 'react';
+import { useState, useEffect, useTransition, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Search, X, Loader2 } from 'lucide-react';
 import { useDebounce } from '@/hooks/useDebounce';
@@ -13,17 +13,19 @@ interface Props {
 export function SearchBar({ defaultValue = '', placeholder = 'Search products...' }: Props) {
   const [query, setQuery] = useState(defaultValue);
   const [isPending, startTransition] = useTransition();
-  const debouncedQuery = useDebounce(query, 400);
+  const debouncedQuery = useDebounce(query, 1000);
   const router = useRouter();
+  const routerRef = useRef(router);
+  useEffect(() => { routerRef.current = router; }, [router]);
 
   // Sync debounced query to URL (for shareable search links + SSR)
   useEffect(() => {
     startTransition(() => {
       if (debouncedQuery.trim()) {
-        router.push(`/search?q=${encodeURIComponent(debouncedQuery.trim())}`);
+        routerRef.current.replace(`/search?q=${encodeURIComponent(debouncedQuery.trim())}`);
       }
     });
-  }, [debouncedQuery, router]);
+  }, [debouncedQuery]); // routerRef is stable — intentionally omitted
 
   return (
     <div className="relative">
@@ -42,7 +44,10 @@ export function SearchBar({ defaultValue = '', placeholder = 'Search products...
       )}
       {query && (
         <button
-          onClick={() => setQuery('')}
+          onClick={() => {
+            setQuery('');
+            routerRef.current.replace('/search');
+          }}
           className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100"
           aria-label="Clear search"
         >
