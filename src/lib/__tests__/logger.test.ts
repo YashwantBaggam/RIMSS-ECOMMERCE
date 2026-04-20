@@ -1,3 +1,6 @@
+/**
+* @jest-environment node
+*/
 import { logger, generateTraceId } from '../logger';
 
 // Capture stdout writes in tests
