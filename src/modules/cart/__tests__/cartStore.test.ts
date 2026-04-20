@@ -1,5 +1,5 @@
-import { useCartStore } from '../cartStore';
 import type { Product } from '@/lib/mock-data';
+import { useCartStore } from '../store/cartStore';
 
 // Reset store between tests
 beforeEach(() => {
