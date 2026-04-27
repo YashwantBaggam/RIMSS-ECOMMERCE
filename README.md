@@ -1,4 +1,4 @@
-# 🛒 ShopForge — Enterprise E-Commerce Frontend Platform
+# 🛒 YCompany — Enterprise E-Commerce Frontend Platform
 
 > A production-grade, scalable frontend architecture built with Next.js 14, TypeScript, and plugin-based modular design. Demonstrates senior-level system thinking, NFR coverage, and clean architecture principles.
 
@@ -162,7 +162,7 @@ const { mutate } = useMutation({
 export async function generateMetadata({ params }) {
   const product = await getProduct(params.id);
   return {
-    title: `${product.name} | ShopForge`,
+    title: `${product.name} | YCompany`,
     description: product.description,
     openGraph: { images: [product.image] }
   };
@@ -266,7 +266,7 @@ export const useCartStore = create<CartStore>()(
       })),
       total: () => get().items.reduce((sum, i) => sum + i.price * i.qty, 0)
     }),
-    { name: 'shopforge-cart' }  // Persists to localStorage
+    { name: 'YCompany-cart' }  // Persists to localStorage
   )
 );
 ```
@@ -442,7 +442,7 @@ open http://localhost:3000
 6. **Add to Cart** → Badge updates in 0ms (optimistic) — API call fires in background
 7. **Cart Drawer** → Qty controls, subtotal, persists on refresh (Zustand + localStorage)
 8. **Live Log Panel** → Click the **`⬛ Logs`** button (bottom-right) → see real-time structured JSON logs. Switch to "json" view to see production log format. Expand any row for traceId + payload.
-9. **Zustand DevTools** → Install Redux DevTools extension → open it → see `ShopForge/Cart` store, named actions (cart/addItem, cart/removeItem), full state history and time-travel
+9. **Zustand DevTools** → Install Redux DevTools extension → open it → see `YCompany/Cart` store, named actions (cart/addItem, cart/removeItem), full state history and time-travel
 10. **Mobile** → Resize browser → responsive grid (1→2→4 columns)
 
 ### Environment Variables
@@ -715,4 +715,4 @@ npm run build             # full build
 | `VERCEL_TOKEN` | Vercel → Settings → Tokens |
 | `VERCEL_ORG_ID` | `.vercel/project.json` after `vercel link` |
 | `VERCEL_PROJECT_ID` | `.vercel/project.json` after `vercel link` |
-| `PRODUCTION_URL` | e.g. `https://shopforge.vercel.app` |
+| `PRODUCTION_URL` | e.g. `https://YCompany.vercel.app` |
