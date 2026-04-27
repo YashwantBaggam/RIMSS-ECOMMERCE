@@ -36,8 +36,8 @@ export function SearchResults({ query: initialQuery, category: initialCategory, 
   useEffect(() => { setCategory(initialCategory || 'all'); }, [initialCategory]);
   useEffect(() => { setSort(initialSort || 'relevance'); },   [initialSort]);
 
-  // 300ms debounce — what actually goes to the API
-  const debouncedQuery = useDebounce(inputValue, 300);
+  // 600ms debounce — what actually goes to the API
+  const debouncedQuery = useDebounce(inputValue, 600);
 
   // Sync URL when debounced value settles (shareable links)
   useEffect(() => {
@@ -86,7 +86,7 @@ export function SearchResults({ query: initialQuery, category: initialCategory, 
             type="search"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            placeholder="Search products… (300ms debounce)"
+            placeholder="Search products… (600ms debounce)"
             autoFocus
             className="w-full pl-12 pr-10 py-3.5 bg-white border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent shadow-sm text-sm"
             aria-label="Search products"
@@ -102,7 +102,7 @@ export function SearchResults({ query: initialQuery, category: initialCategory, 
           )}
         </div>
         <p className="text-xs text-gray-400 text-center">
-          ⚡ 300ms debounce · React Query cache · Infinite scroll
+          ⚡ 600ms debounce · React Query cache · Infinite scroll
         </p>
       </div>
 

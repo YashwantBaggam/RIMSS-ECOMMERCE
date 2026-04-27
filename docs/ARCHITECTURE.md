@@ -153,7 +153,7 @@ User action
     ▼ t=0ms
 UI reacts immediately (skeleton / optimistic update)
     │
-    ▼ t=300ms (debounce, if search)
+    ▼ t=600ms (debounce, if search)
 API call fires
     │
     ▼ t=600ms (avg with simulated latency)
