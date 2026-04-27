@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { logPanel } from '@/lib/logger';
 import type { LogEntry, LogLevel } from '@/lib/logger';
-import { Terminal, X, Trash2, ChevronDown, ChevronUp, Filter } from 'lucide-react';
+import { Terminal, X, Trash2, ChevronDown, ChevronUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 // ── Styles per level ─────────────────────────────────────────────────────────
@@ -12,12 +12,6 @@ const LEVEL_BADGE: Record<LogLevel, string> = {
   info:  'bg-indigo-100 text-indigo-700',
   warn:  'bg-amber-100 text-amber-700',
   error: 'bg-red-100 text-red-700',
-};
-const LEVEL_ROW: Record<LogLevel, string> = {
-  debug: 'hover:bg-gray-50',
-  info:  'hover:bg-indigo-50/40',
-  warn:  'hover:bg-amber-50/40',
-  error: 'bg-red-50/60 hover:bg-red-50',
 };
 
 const ALL_LEVELS: LogLevel[] = ['debug', 'info', 'warn', 'error'];
